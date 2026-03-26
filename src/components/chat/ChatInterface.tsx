@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Search, Paperclip, Zap, Globe, Brain, Sparkles } from 'lucide-react';
+import { Send, Search, Paperclip, Globe, Brain, Sparkles } from 'lucide-react';
 import { MessageBubble } from './MessageBubble';
 import { TypingIndicator } from './TypingIndicator';
 import { generateAIResponse } from '../../lib/ai';

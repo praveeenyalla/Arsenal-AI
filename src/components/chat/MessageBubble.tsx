@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { User, Zap, Copy, ExternalLink } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { formatDistanceToNow } from 'date-fns';
 import type { Message } from '../../types';
 
@@ -50,15 +50,15 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
             <div className="prose prose-invert prose-sm max-w-none">
               <ReactMarkdown
                 components={{
-                  code({ node, inline, className, children, ...props }) {
+                  code({ node, className, children, ...props }) {
                     const match = /language-(\w+)/.exec(className || '');
-                    return !inline && match ? (
+                    const isInline = (props as any).inline;
+                    return !isInline && match ? (
                       <SyntaxHighlighter
-                        style={oneDark}
+                        style={prism as any}
                         language={match[1]}
                         PreTag="div"
                         className="rounded-lg"
-                        {...props}
                       >
                         {String(children).replace(/\n$/, '')}
                       </SyntaxHighlighter>
